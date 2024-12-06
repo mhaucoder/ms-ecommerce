@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product
+    username: hajuna
+    password: hajuna
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    databasePlatform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baselineOnMigrate: true
+    enable: true
+    baselineDescription: "init"
+    baselineVersion: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 3000
+
+server:
+  port: 8050
