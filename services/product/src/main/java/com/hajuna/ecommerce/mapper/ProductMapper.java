@@ -49,20 +49,13 @@ public class ProductMapper {
     }
 
     public PurchaseProductResponseDTO toPurchaseProductResponseDTO(Product product, int quantity) {
-        PurchaseProductResponseDTO productDto = PurchaseProductResponseDTO.builder()
-                .id(product.getId())
+        return PurchaseProductResponseDTO.builder()
+                .productId(product.getId())
                 .name(product.getName())
+                .price(product.getPrice())
                 .quantity(quantity)
                 .description(product.getDescription())
-                .brand(product.getBrand())
-                .category(product.getCategory())
                 .build();
-        List<Image> images = imageRepository.findByProductId(product.getId());
-        List<ImageDTO> imagesDto = images.stream()
-                .map(image -> modelMapper.map(image, ImageDTO.class))
-                .toList();
-        productDto.setImages(imagesDto);
-        return productDto;
     }
 
 }

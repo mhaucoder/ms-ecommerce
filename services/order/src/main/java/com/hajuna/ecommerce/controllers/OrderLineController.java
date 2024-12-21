@@ -1,7 +1,6 @@
 package com.hajuna.ecommerce.controllers;
 
-import com.hajuna.ecommerce.commons.APIResponse;
-import com.hajuna.ecommerce.models.OrderLine;
+import com.hajuna.ecommerce.utils.commons.APIResponse;
 import com.hajuna.ecommerce.services.interfaces.IOrderLineService;
 import com.hajuna.ecommerce.utils.ResponseUtils;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("${api.prefix}/order-line")
+@RequestMapping("${api.prefix}/order-lines")
 @RequiredArgsConstructor
 public class OrderLineController {
     private final IOrderLineService orderLineService;

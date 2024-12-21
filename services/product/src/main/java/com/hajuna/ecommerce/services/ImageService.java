@@ -1,6 +1,6 @@
 package com.hajuna.ecommerce.services;
 
-import com.hajuna.ecommerce.constants.ErrorMessages;
+import com.hajuna.ecommerce.utils.constants.ErrorMessages;
 import com.hajuna.ecommerce.dto.ImageDTO;
 import com.hajuna.ecommerce.exceptions.NotFoundException;
 import com.hajuna.ecommerce.models.Image;

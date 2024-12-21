@@ -1,6 +1,6 @@
 package com.hajuna.ecommerce.kafka;
 
-import com.hajuna.ecommerce.dtos.requests.OrderConfirmation;
+import com.hajuna.ecommerce.dto.requests.OrderConfirmationRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderProducer {
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, OrderConfirmationRequestDTO> kafkaTemplate;
 
-    public void sendOrderConfirmation(OrderConfirmation orderConfirmation) {
+    public void sendOrderConfirmation(OrderConfirmationRequestDTO orderConfirmation) {
         log.info("Sending order confirmation: {}", orderConfirmation);
-        Message<OrderConfirmation> message = MessageBuilder
+        Message<OrderConfirmationRequestDTO> message = MessageBuilder
                 .withPayload(orderConfirmation)
                 .setHeader(KafkaHeaders.TOPIC, "order-topic")
                 .build();

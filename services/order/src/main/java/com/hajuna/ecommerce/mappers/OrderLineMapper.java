@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.mappers;
 
-import com.hajuna.ecommerce.dtos.requests.OrderLineRequestDTO;
-import com.hajuna.ecommerce.dtos.responses.OrderLineResponseDTO;
+import com.hajuna.ecommerce.dto.requests.OrderLineRequestDTO;
+import com.hajuna.ecommerce.dto.responses.OrderLineResponseDTO;
 import com.hajuna.ecommerce.models.Order;
 import com.hajuna.ecommerce.models.OrderLine;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class OrderLineMapper {
                 .productId(orderLineRequestDTO.productId)
                 .order(
                         Order.builder()
-                                .id(orderLineRequestDTO.id)
+                                .id(orderLineRequestDTO.orderId)
                                 .build()
                 )
                 .quantity(orderLineRequestDTO.quantity)

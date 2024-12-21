@@ -1,15 +1,14 @@
 package com.hajuna.ecommerce.services;
 
 import com.hajuna.ecommerce.clients.CustomerClient;
+import com.hajuna.ecommerce.clients.PaymentClient;
 import com.hajuna.ecommerce.clients.ProductClient;
-import com.hajuna.ecommerce.constants.ErrorMessages;
-import com.hajuna.ecommerce.dtos.requests.OrderConfirmation;
-import com.hajuna.ecommerce.dtos.requests.OrderLineRequestDTO;
-import com.hajuna.ecommerce.dtos.requests.OrderRequestDTO;
-import com.hajuna.ecommerce.dtos.requests.PurchaseProductRequestDTO;
-import com.hajuna.ecommerce.dtos.responses.CustomerResponseDTO;
-import com.hajuna.ecommerce.dtos.responses.OrderResponseDTO;
-import com.hajuna.ecommerce.dtos.responses.PurchaseProductResponseDTO;
+import com.hajuna.ecommerce.dto.responses.CustomerResponseDTO;
+import com.hajuna.ecommerce.utils.constants.ErrorMessages;
+import com.hajuna.ecommerce.dto.requests.*;
+import com.hajuna.ecommerce.dto.requests.CustomerRequestDTO;
+import com.hajuna.ecommerce.dto.responses.OrderResponseDTO;
+import com.hajuna.ecommerce.dto.responses.PurchaseProductResponseDTO;
 import com.hajuna.ecommerce.exceptions.NotFoundException;
 import com.hajuna.ecommerce.kafka.OrderProducer;
 import com.hajuna.ecommerce.mappers.OrderMapper;
@@ -21,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +30,7 @@ public class OrderService implements IOrderService {
     private final OrderMapper orderMapper;
     private final IOrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     @Override
     public Long createOrder(OrderRequestDTO request) {
@@ -52,8 +51,18 @@ public class OrderService implements IOrderService {
             );
         }
 
+        PaymentRequestDTO payment = new PaymentRequestDTO(
+                request.amount,
+                request.paymentMethod,
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+
+        paymentClient.requestOrderPayment(payment);
+
         orderProducer.sendOrderConfirmation(
-                new OrderConfirmation(
+                new OrderConfirmationRequestDTO(
                         request.reference,
                         request.amount,
                         request.paymentMethod,

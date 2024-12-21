@@ -1,6 +1,6 @@
 package com.hajuna.ecommerce.services;
 
-import com.hajuna.ecommerce.constants.ErrorMessages;
+import com.hajuna.ecommerce.utils.constants.ErrorMessages;
 import com.hajuna.ecommerce.dto.CustomerDTO;
 import com.hajuna.ecommerce.dto.request.CreateCustomerDTO;
 import com.hajuna.ecommerce.dto.request.UpdateCustomerDTO;
@@ -31,7 +31,7 @@ public class CustomerService implements ICustomerService {
             throw new AlreadyExistsException(ErrorMessages.EMAIL_ALREADY_EXISTS);
         }
         Customer customer = Customer.builder()
-                        .fistName(request.getFistName())
+                        .firstName(request.getFirstName())
                         .lastName(request.getLastName())
                         .email(request.getEmail())
                         .phone(request.getPhone())
@@ -43,7 +43,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer updateCustomer(UpdateCustomerDTO request, String customerId) {
         return  customerRepository.findById(customerId).map(existingCustomer -> {
-            existingCustomer.setFistName(request.getFistName());
+            existingCustomer.setFirstName(request.getFirstName());
             existingCustomer.setLastName(request.getLastName());
             existingCustomer.setEmail(request.getEmail());
             existingCustomer.setPhone(request.getPhone());

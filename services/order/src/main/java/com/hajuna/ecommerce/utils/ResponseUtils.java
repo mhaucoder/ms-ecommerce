@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.utils;
 
-import com.hajuna.ecommerce.commons.APIResponse;
-import com.hajuna.ecommerce.enums.ResponseStatus;
+import com.hajuna.ecommerce.utils.commons.APIResponse;
+import com.hajuna.ecommerce.utils.enums.ResponseStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

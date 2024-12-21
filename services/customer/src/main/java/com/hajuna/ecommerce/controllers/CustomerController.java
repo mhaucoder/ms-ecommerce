@@ -1,6 +1,7 @@
 package com.hajuna.ecommerce.controllers;
 
-import com.hajuna.ecommerce.commons.APIResponse;
+import com.hajuna.ecommerce.dto.response.CustomerResponseDTO;
+import com.hajuna.ecommerce.utils.commons.APIResponse;
 import com.hajuna.ecommerce.dto.CustomerDTO;
 import com.hajuna.ecommerce.dto.request.CreateCustomerDTO;
 import com.hajuna.ecommerce.dto.request.UpdateCustomerDTO;
@@ -32,6 +33,13 @@ public class CustomerController {
         Customer customer = customerService.getCustomerById(customerId);
         CustomerDTO productDto = customerService.convertDTO(customer);
         return ResponseUtils.ok(productDto);
+    }
+
+    @GetMapping("/client/{customerId}")
+    public ResponseEntity<CustomerDTO> getCustomerByIdForClient(@PathVariable String customerId) {
+        Customer customer = customerService.getCustomerById(customerId);
+        CustomerDTO customerDTO = customerService.convertDTO(customer);
+        return ResponseEntity.ok(customerDTO);
     }
 
     @GetMapping("/exits/{customerId}")

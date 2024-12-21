@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.handler;
 
-import com.hajuna.ecommerce.commons.ErrorResponse;
-import com.hajuna.ecommerce.enums.ResponseStatus;
+import com.hajuna.ecommerce.utils.commons.ErrorResponse;
+import com.hajuna.ecommerce.utils.enums.ResponseStatus;
 import com.hajuna.ecommerce.exceptions.AlreadyExistsException;
 import com.hajuna.ecommerce.exceptions.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;

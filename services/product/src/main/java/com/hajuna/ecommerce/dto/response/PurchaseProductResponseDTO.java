@@ -12,12 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class PurchaseProductResponseDTO {
-    public Long id;
+    public Long productId;
     public String name;
-    public String brand;
+    public String description;
     public BigDecimal price;
     public int quantity;
-    public String description;
-    public Category category;
-    public List<ImageDTO> images;
 }

@@ -1,6 +1,6 @@
 package com.hajuna.ecommerce.services;
 
-import com.hajuna.ecommerce.constants.ErrorMessages;
+import com.hajuna.ecommerce.utils.constants.ErrorMessages;
 import com.hajuna.ecommerce.dto.response.ProductResponseDTO;
 import com.hajuna.ecommerce.dto.request.CreateProductRequestDTO;
 import com.hajuna.ecommerce.dto.request.PurchaseProductRequestDTO;
@@ -33,12 +33,12 @@ public class ProductService implements IProductService {
 
     @Override
     public List<PurchaseProductResponseDTO> purchaseProduct(List<PurchaseProductRequestDTO> products) {
-        List<Long> productIds = products.stream().map(PurchaseProductRequestDTO::getId).toList();
+        List<Long> productIds = products.stream().map(PurchaseProductRequestDTO::getProductId).toList();
         List<Product> productList = productRepository.findAllByIdInOrderById(productIds).stream().sorted(Comparator.comparing(Product::getId)).toList();
         if(productList.size() != productIds.size()) {
             throw new NotFoundException(ErrorMessages.PRODUCT_NOT_FOUND);
         }
-        List<PurchaseProductRequestDTO> requestProducts = products.stream().sorted(Comparator.comparing(PurchaseProductRequestDTO::getId)).toList();
+        List<PurchaseProductRequestDTO> requestProducts = products.stream().sorted(Comparator.comparing(PurchaseProductRequestDTO::getProductId)).toList();
         List<PurchaseProductResponseDTO> purchaseProducts = new ArrayList<>();
         for(int i = 0; i<requestProducts.size(); i++) {
             Product product = productList.get(i);

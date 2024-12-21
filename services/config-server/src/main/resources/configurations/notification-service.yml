@@ -1,0 +1,36 @@
+spring:
+  data:
+    mongodb:
+      username: hajuna
+      password: hajuna
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup, orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.package: "*"
+        spring.json.type.mapping: orderConfirmation:com.hajuna.ecommerce.dto.requests.OrderConfirmationRequestDTO, paymentConfirmation:com.hajuna.ecommerce.dto.requests.PaymentConfirmationRequestDTO
+  mail:
+    host: localhost
+    port: 1025
+    username: hajuna
+    password: hajuna
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+server:
+  port: 8040

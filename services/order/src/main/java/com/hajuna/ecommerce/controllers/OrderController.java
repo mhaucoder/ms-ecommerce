@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.controllers;
 
-import com.hajuna.ecommerce.commons.APIResponse;
-import com.hajuna.ecommerce.dtos.requests.OrderRequestDTO;
+import com.hajuna.ecommerce.utils.commons.APIResponse;
+import com.hajuna.ecommerce.dto.requests.OrderRequestDTO;
 import com.hajuna.ecommerce.services.interfaces.IOrderService;
 import com.hajuna.ecommerce.utils.ResponseUtils;
 import jakarta.validation.Valid;

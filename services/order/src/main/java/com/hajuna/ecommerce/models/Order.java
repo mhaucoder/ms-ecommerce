@@ -1,6 +1,6 @@
 package com.hajuna.ecommerce.models;
 
-import com.hajuna.ecommerce.enums.PaymentMethod;
+import com.hajuna.ecommerce.utils.enums.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter @Setter
 @Builder
-@Entity @EntityListeners(AuditingEntityListener.class)
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "customer_order")
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +28,11 @@ public class Order {
     private String customerId;
     @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines;
+
     @CreatedDate
     @Column(updatable = false, nullable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createdDate;
+
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;

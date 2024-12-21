@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.services;
 
-import com.hajuna.ecommerce.dtos.requests.OrderLineRequestDTO;
-import com.hajuna.ecommerce.dtos.responses.OrderLineResponseDTO;
+import com.hajuna.ecommerce.dto.requests.OrderLineRequestDTO;
+import com.hajuna.ecommerce.dto.responses.OrderLineResponseDTO;
 import com.hajuna.ecommerce.mappers.OrderLineMapper;
 import com.hajuna.ecommerce.models.OrderLine;
 import com.hajuna.ecommerce.repositories.OrderLineRepository;
@@ -18,9 +18,9 @@ public class OrderLineService implements IOrderLineService {
     private final OrderLineMapper orderLineMapper;
 
     @Override
-    public Long createOrderLine(OrderLineRequestDTO orderLineRequestDTO) {
+    public void createOrderLine(OrderLineRequestDTO orderLineRequestDTO) {
              OrderLine orderLine = orderLineMapper.toOrderLine(orderLineRequestDTO);
-             return orderLineRepository.save(orderLine).getId();
+        orderLineRepository.save(orderLine);
     }
 
     @Override

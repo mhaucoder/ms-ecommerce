@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.clients;
 
-import com.hajuna.ecommerce.dtos.requests.PurchaseProductRequestDTO;
-import com.hajuna.ecommerce.dtos.responses.PurchaseProductResponseDTO;
+import com.hajuna.ecommerce.dto.requests.PurchaseProductRequestDTO;
+import com.hajuna.ecommerce.dto.responses.PurchaseProductResponseDTO;
 import com.hajuna.ecommerce.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

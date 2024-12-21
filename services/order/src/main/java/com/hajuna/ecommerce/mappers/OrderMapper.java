@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.mappers;
 
-import com.hajuna.ecommerce.dtos.requests.OrderRequestDTO;
-import com.hajuna.ecommerce.dtos.responses.OrderResponseDTO;
+import com.hajuna.ecommerce.dto.requests.OrderRequestDTO;
+import com.hajuna.ecommerce.dto.responses.OrderResponseDTO;
 import com.hajuna.ecommerce.models.Order;
 import org.springframework.stereotype.Service;
 

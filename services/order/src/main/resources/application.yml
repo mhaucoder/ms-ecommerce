@@ -5,3 +5,10 @@ spring:
     name: order-service
 api:
   prefix: /api/v1
+logging:
+  level:
+    org:
+      springframework:
+        beans:
+          factory:
+            support=DEBUG:

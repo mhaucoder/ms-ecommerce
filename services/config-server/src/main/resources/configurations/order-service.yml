@@ -6,7 +6,7 @@ spring:
     driverClassName: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     databasePlatform: org.hibernate.dialect.PostgreSQLDialect
   kafka:
@@ -15,13 +15,20 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: orderConfirmation:com.hajuna.ecommerce.kafka.OrderConfirmation
+        spring.json.type.mapping: orderConfirmation:com.hajuna.ecommerce.dto.requests.OrderConfirmationRequestDTO
 
 application:
   config:
     customer-url: http://localhost:8222/api/v1/customers
     product-url: http://localhost:8222/api/v1/products
     payment-url: http://localhost:8222/api/v1/payments
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
 
 server:
   port: 8070

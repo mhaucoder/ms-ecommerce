@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PurchaseProductRequestDTO {
-    public Long id;
+    public Long productId;
     public int quantity;
 }

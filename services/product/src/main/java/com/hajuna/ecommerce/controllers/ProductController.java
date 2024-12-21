@@ -1,7 +1,7 @@
 package com.hajuna.ecommerce.controllers;
 
 
-import com.hajuna.ecommerce.commons.APIResponse;
+import com.hajuna.ecommerce.utils.commons.APIResponse;
 import com.hajuna.ecommerce.dto.response.ProductResponseDTO;
 import com.hajuna.ecommerce.dto.request.CreateProductRequestDTO;
 import com.hajuna.ecommerce.dto.request.PurchaseProductRequestDTO;
@@ -35,9 +35,9 @@ public class ProductController {
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity<APIResponse> purchaseProduct(@RequestBody List<PurchaseProductRequestDTO> purchaseProductRequest) {
+    public ResponseEntity<List<PurchaseProductResponseDTO>> purchaseProduct(@RequestBody List<PurchaseProductRequestDTO> purchaseProductRequest) {
         List<PurchaseProductResponseDTO> products = productService.purchaseProduct(purchaseProductRequest);
-        return ResponseUtils.ok(products);
+        return ResponseEntity.ok(products);
     }
 
     @PostMapping()
